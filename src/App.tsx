@@ -44,6 +44,8 @@ const TopUpAmount = lazy(() => import('./pages/TopUpAmount'));
 const AdminPanel = lazy(() => import('./pages/AdminPanel'));
 const AdminTickets = lazy(() => import('./pages/AdminTickets'));
 const AdminTicketSettings = lazy(() => import('./pages/AdminTicketSettings'));
+const AdminAIProviders = lazy(() => import('./pages/AdminAIProviders'));
+const AdminAIFaq = lazy(() => import('./pages/AdminAIFaq'));
 const AdminSettings = lazy(() => import('./pages/AdminSettings'));
 const AdminApps = lazy(() => import('./pages/AdminApps'));
 const AdminWheel = lazy(() => import('./pages/AdminWheel'));
@@ -380,6 +382,26 @@ function App() {
             <PermissionRoute permission="tickets:settings">
               <LazyPage>
                 <AdminTicketSettings />
+              </LazyPage>
+            </PermissionRoute>
+          }
+        />
+        <Route
+          path="/admin/ai-providers"
+          element={
+            <PermissionRoute permission="tickets:settings">
+              <LazyPage>
+                <AdminAIProviders />
+              </LazyPage>
+            </PermissionRoute>
+          }
+        />
+        <Route
+          path="/admin/ai-faq"
+          element={
+            <PermissionRoute permission="tickets:settings">
+              <LazyPage>
+                <AdminAIFaq />
               </LazyPage>
             </PermissionRoute>
           }
