@@ -146,29 +146,192 @@ export default function AdminTicketSettings() {
           <h3 className="mb-4 text-lg font-semibold text-dark-100">
             {t('admin.tickets.supportMode')}
           </h3>
-          <select
-            value={formData.support_system_mode}
-            onChange={(e) => setFormData({ ...formData, support_system_mode: e.target.value })}
-            className="input"
-          >
-            <option value="both">{t('admin.tickets.modeBoth')}</option>
-            <option value="tickets">{t('admin.tickets.modeTickets')}</option>
-            <option value="contact">{t('admin.tickets.modeContact')}</option>
-            <option value="ai_tiket">🤖 {t('admin.tickets.modeAiTiket')}</option>
-          </select>
-          <p className="mt-2 text-sm text-dark-500">{t('admin.tickets.supportModeDesc')}</p>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Tickets */}
+            <label
+              className={`relative flex cursor-pointer rounded-xl border p-4 transition-all hover:bg-dark-800/50 ${
+                formData.support_system_mode === 'tickets'
+                  ? 'border-accent-500 bg-accent-500/10 ring-1 ring-accent-500'
+                  : 'border-dark-700 bg-dark-800/20'
+              }`}
+            >
+              <input
+                type="radio"
+                name="support_mode"
+                value="tickets"
+                className="sr-only"
+                checked={formData.support_system_mode === 'tickets'}
+                onChange={(e) => setFormData({ ...formData, support_system_mode: e.target.value })}
+              />
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center justify-between">
+                  <span
+                    className={`text-sm font-medium ${formData.support_system_mode === 'tickets' ? 'text-accent-400' : 'text-dark-200'}`}
+                  >
+                    🎫 {t('admin.tickets.modeTickets')}
+                  </span>
+                  {formData.support_system_mode === 'tickets' && (
+                    <div className="h-2 w-2 rounded-full bg-accent-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]" />
+                  )}
+                </div>
+              </div>
+            </label>
+
+            {/* Contact */}
+            <label
+              className={`relative flex cursor-pointer rounded-xl border p-4 transition-all hover:bg-dark-800/50 ${
+                formData.support_system_mode === 'contact'
+                  ? 'border-accent-500 bg-accent-500/10 ring-1 ring-accent-500'
+                  : 'border-dark-700 bg-dark-800/20'
+              }`}
+            >
+              <input
+                type="radio"
+                name="support_mode"
+                value="contact"
+                className="sr-only"
+                checked={formData.support_system_mode === 'contact'}
+                onChange={(e) => setFormData({ ...formData, support_system_mode: e.target.value })}
+              />
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center justify-between">
+                  <span
+                    className={`text-sm font-medium ${formData.support_system_mode === 'contact' ? 'text-accent-400' : 'text-dark-200'}`}
+                  >
+                    💬 {t('admin.tickets.modeContact')}
+                  </span>
+                  {formData.support_system_mode === 'contact' && (
+                    <div className="h-2 w-2 rounded-full bg-accent-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]" />
+                  )}
+                </div>
+              </div>
+            </label>
+
+            {/* Both */}
+            <label
+              className={`relative flex cursor-pointer rounded-xl border p-4 transition-all hover:bg-dark-800/50 ${
+                formData.support_system_mode === 'both'
+                  ? 'border-accent-500 bg-accent-500/10 ring-1 ring-accent-500'
+                  : 'border-dark-700 bg-dark-800/20'
+              }`}
+            >
+              <input
+                type="radio"
+                name="support_mode"
+                value="both"
+                className="sr-only"
+                checked={formData.support_system_mode === 'both'}
+                onChange={(e) => setFormData({ ...formData, support_system_mode: e.target.value })}
+              />
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center justify-between">
+                  <span
+                    className={`text-sm font-medium ${formData.support_system_mode === 'both' ? 'text-accent-400' : 'text-dark-200'}`}
+                  >
+                    🎭 {t('admin.tickets.modeBoth')}
+                  </span>
+                  {formData.support_system_mode === 'both' && (
+                    <div className="h-2 w-2 rounded-full bg-accent-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]" />
+                  )}
+                </div>
+              </div>
+            </label>
+
+            {/* AI Tiket */}
+            <label
+              className={`relative flex cursor-pointer rounded-xl border p-4 transition-all hover:bg-emerald-900/30 ${
+                formData.support_system_mode === 'ai_tiket'
+                  ? 'border-emerald-500 bg-emerald-500/10 ring-1 ring-emerald-500'
+                  : 'border-dark-700 bg-dark-800/20'
+              }`}
+            >
+              <input
+                type="radio"
+                name="support_mode"
+                value="ai_tiket"
+                className="sr-only"
+                checked={formData.support_system_mode === 'ai_tiket'}
+                onChange={(e) => setFormData({ ...formData, support_system_mode: e.target.value })}
+              />
+              <div className="relative flex w-full flex-col gap-1 overflow-hidden">
+                <div className="relative z-10 flex items-center justify-between">
+                  <span
+                    className={`flex items-center gap-2 text-sm font-semibold ${formData.support_system_mode === 'ai_tiket' ? 'text-emerald-400' : 'text-dark-200'}`}
+                  >
+                    🤖 {t('admin.tickets.modeAiTiket', 'DonMatteo-AI-Tiket')}
+                  </span>
+                  {formData.support_system_mode === 'ai_tiket' && (
+                    <div className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+                  )}
+                </div>
+                {formData.support_system_mode === 'ai_tiket' && (
+                  <div className="pointer-events-none absolute -bottom-6 -right-4 text-emerald-500/10">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v2h-2v4a2 2 0 0 1-2 2h-2v2a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2H6a2 2 0 0 1-2-2v-4H2v-2a2 2 0 0 1 2-2V8a2 2 0 0 1 2-2h2V4a2 2 0 0 1 2-2h4zm0 2h-4v2H6v4H4v2h2v4h2v2h4v-2h2v-4h2v-2h-2V8h-2V6h-2V4z" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            </label>
+          </div>
+
+          <p className="mt-4 text-sm text-dark-500">{t('admin.tickets.supportModeDesc')}</p>
 
           {formData.support_system_mode === 'ai_tiket' && (
-            <Link
-              to="/admin/ai-providers"
-              className="mt-3 flex items-center gap-2 rounded-lg border border-accent-500/30 bg-accent-500/10 p-3 text-sm text-accent-400 transition-colors hover:bg-accent-500/20"
-            >
-              <span>⚙️</span>
-              <span>{t('admin.tickets.configureAiProviders')}</span>
-              <svg className="ml-auto h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
+            <div className="mt-6 flex flex-col gap-3 rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4 sm:flex-row">
+              <Link
+                to="/admin/ai-providers"
+                className="flex flex-1 items-center gap-3 rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-4 text-sm font-medium text-emerald-400 transition-colors hover:bg-emerald-500/20"
+              >
+                <span className="text-xl">⚙️</span>
+                <div className="flex flex-col">
+                  <span>{t('admin.tickets.configureAiProviders', 'Провайдеры ИИ / Промпт')}</span>
+                  <span className="mt-0.5 text-xs font-normal text-emerald-500/70">
+                    API ключи и модель поведения
+                  </span>
+                </div>
+                <svg
+                  className="ml-auto h-5 w-5 opacity-50"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Link>
+
+              <Link
+                to="/admin/ai-faq"
+                className="flex flex-1 items-center gap-3 rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-4 text-sm font-medium text-emerald-400 transition-colors hover:bg-emerald-500/20"
+              >
+                <span className="text-xl">📚</span>
+                <div className="flex flex-col">
+                  <span>{t('admin.tickets.configureAiFaq', 'База знаний FAQ')}</span>
+                  <span className="mt-0.5 text-xs font-normal text-emerald-500/70">
+                    Статьи и инструкции для ИИ
+                  </span>
+                </div>
+                <svg
+                  className="ml-auto h-5 w-5 opacity-50"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Link>
+            </div>
           )}
         </div>
 
@@ -291,7 +454,8 @@ export default function AdminTicketSettings() {
                 value={formData.sla_check_interval_seconds}
                 onChange={(e) => {
                   const val = e.target.value;
-                  if (val === '') return setFormData({ ...formData, sla_check_interval_seconds: '' });
+                  if (val === '')
+                    return setFormData({ ...formData, sla_check_interval_seconds: '' });
                   const num = parseInt(val);
                   if (!isNaN(num)) setFormData({ ...formData, sla_check_interval_seconds: num });
                 }}
@@ -335,7 +499,9 @@ export default function AdminTicketSettings() {
                     {t('admin.tickets.validation.reminderCooldownRange')}
                   </p>
                 )}
-              <p className="mt-1 text-xs text-dark-500">{t('admin.tickets.reminderCooldownDesc')}</p>
+              <p className="mt-1 text-xs text-dark-500">
+                {t('admin.tickets.reminderCooldownDesc')}
+              </p>
             </div>
           </div>
         )}
