@@ -536,6 +536,8 @@
     },
     "yourReferrals": "您的推荐",
     "noReferrals": "暂无推荐。分享链接邀请好友！",
+    "anonymousUser": "用户 #{{id}}",
+    "anonymousReferral": "推荐人",
     "user": "用户",
     "joined": "加入时间",
     "hasPaid": "已付款",
@@ -583,6 +585,28 @@
         "subscriptionDesc": "{{days}} 天免费订阅",
         "tariff": "奖励套餐",
         "tariffDesc": "免费套餐方案"
+      },
+      "stats": {
+        "registrations": "注册",
+        "referrals": "推荐",
+        "earnings": "收入",
+        "conversionRate": "转化率",
+        "today": "今天",
+        "week": "本周",
+        "month": "本月",
+        "showDetails": "详情",
+        "hideDetails": "收起",
+        "vsLastWeek": "对比上周",
+        "topReferrals": "热门推荐",
+        "noData": "暂无数据",
+        "dailyChart": "30天趋势",
+        "periodComparison": "周期对比",
+        "noReferrals": "暂无推荐",
+        "paid": "已付款",
+        "pending": "待处理",
+        "active": "活跃",
+        "referralsCount": "推荐数",
+        "earningsAmount": "收入"
       },
       "fields": {
         "companyName": "公司名称",
@@ -841,7 +865,8 @@
       "roles": "角色",
       "roleAssign": "角色分配",
       "policies": "访问策略",
-      "auditLog": "审计日志"
+      "auditLog": "审计日志",
+      "salesStats": "销售统计"
     },
     "panel": {
       "title": "管理面板",
@@ -873,7 +898,87 @@
       "rolesDesc": "管理管理员角色和权限",
       "roleAssignDesc": "分配和撤销用户角色",
       "policiesDesc": "配置ABAC访问控制策略",
-      "auditLogDesc": "查看系统活动和访问历史"
+      "auditLogDesc": "查看系统活动和访问历史",
+      "salesStatsDesc": "销售分析与趋势"
+    },
+    "salesStats": {
+      "title": "销售统计",
+      "subtitle": "收入、试用、订阅和续订",
+      "period": {
+        "week": "7天",
+        "month": "30天",
+        "quarter": "90天",
+        "all": "全部",
+        "custom": "自定义"
+      },
+      "tabs": {
+        "trials": "试用",
+        "sales": "销售",
+        "renewals": "续订",
+        "addons": "附加服务",
+        "deposits": "充值"
+      },
+      "summary": {
+        "revenue": "收入",
+        "activeSubs": "活跃订阅",
+        "activeTrials": "活跃试用",
+        "newTrials": "新试用",
+        "conversion": "转化率",
+        "renewals": "续订",
+        "addonRevenue": "附加服务收入"
+      },
+      "trials": {
+        "total": "试用总数",
+        "totalRegistrations": "注册数",
+        "trialsIssued": "已发放试用",
+        "conversion": "转化率",
+        "avgDuration": "平均时长",
+        "byProvider": "按注册来源",
+        "dailyChart": "每日注册与试用",
+        "registrations": "注册"
+      },
+      "sales": {
+        "totalSales": "总销售",
+        "avgOrder": "平均订单",
+        "topTariff": "热门套餐",
+        "byTariff": "按套餐",
+        "byPeriod": "按订阅周期",
+        "dailyChart": "每日销售",
+        "dailyByTariff": "每日按套餐销售",
+        "subscriptions": "订阅"
+      },
+      "renewals": {
+        "total": "续订总数",
+        "rate": "续订率",
+        "revenue": "收入",
+        "comparison": "期间对比",
+        "currentPeriod": "当前期间",
+        "previousPeriod": "上一期间",
+        "dailyChart": "每日续订",
+        "renewals": "续订"
+      },
+      "addons": {
+        "totalPurchases": "购买总数",
+        "totalGb": "总流量",
+        "revenue": "收入",
+        "devicePurchases": "设备购买",
+        "deviceRevenue": "设备收入",
+        "trafficPurchases": "流量",
+        "devicePurchasesDaily": "设备",
+        "byPackage": "按套餐大小",
+        "dailyChart": "每日附加服务购买",
+        "purchases": "购买"
+      },
+      "deposits": {
+        "totalDeposits": "充值总数",
+        "totalAmount": "总金额",
+        "avgDeposit": "平均充值",
+        "byMethod": "按支付方式",
+        "dailyChart": "每日充值",
+        "dailyByMethod": "每日按支付方式充值",
+        "revenue": "收入"
+      },
+      "loadError": "加载统计失败"
     },
     "trafficUsage": {
       "title": "流量使用",
@@ -1669,7 +1774,15 @@
         "users": "用户",
         "noUsers": "没有注册用户",
         "paid": "已付费",
-        "hasSub": "有订阅"
+        "hasSub": "有订阅",
+        "dailyChart": "30天趋势",
+        "chartRegistrations": "注册",
+        "chartRevenue": "收入",
+        "totalDeposits": "总充值",
+        "totalSpending": "订阅支出",
+        "periodComparison": "期间比较",
+        "vsLastWeek": "与上周对比",
+        "topRegistrations": "热门注册"
       },
       "users": {
         "title": "活动用户",
@@ -1719,7 +1832,8 @@
         "approved": "已批准",
         "rejected": "已拒绝",
         "completed": "已完成",
-        "cancelled": "已取消"
+        "cancelled": "已取消",
+        "unknown": "未知"
       },
       "detail": {
         "title": "提现详情",
@@ -2919,6 +3033,31 @@
       "promoOffers": "促销活动",
       "promoOffersDesc": "接收特别优惠和折扣",
       "unavailable": "通知设置不可用"
+    },
+    "accounts": {
+      "title": "关联账户",
+      "subtitle": "管理您的登录方式",
+      "linked": "已关联",
+      "notLinked": "未关联",
+      "link": "关联",
+      "unlink": "取消关联",
+      "unlinkConfirm": "确定吗？取消关联后，您将无法通过此服务登录。",
+      "unlinkConfirmBtn": "确认取消关联？",
+      "cannotUnlinkLast": "无法取消最后一种登录方式",
+      "linkSuccess": "账户关联成功",
+      "unlinkSuccess": "账户取消关联成功",
+      "linkError": "关联账户失败",
+      "unlinkError": "取消关联失败",
+      "goToAccounts": "关联账户",
+      "linking": "正在关联账户...",
+      "providers": {
+        "telegram": "Telegram",
+        "email": "邮箱",
+        "google": "Google",
+        "yandex": "Yandex",
+        "discord": "Discord",
+        "vk": "VK"
+      }
     }
   },
   "theme": {
@@ -3243,5 +3382,32 @@
       "requests": "请求数",
       "ipHistory": "IP历史"
     }
+  },
+  "merge": {
+    "title": "合并账户",
+    "description": "此登录方式已关联到另一个账户。您可以将两个账户合并为一个。",
+    "currentAccount": "您的当前账户",
+    "foundAccount": "发现的账户",
+    "authMethods": "登录方式",
+    "subscription": "订阅",
+    "noSubscription": "无订阅",
+    "traffic": "流量",
+    "devices": "设备",
+    "balance": "余额",
+    "until": "至 {{date}}",
+    "keepThisSubscription": "保留此订阅",
+    "chooseSubscription": "选择要保留的订阅",
+    "afterMerge": "合并后",
+    "allAuthMethodsMerged": "所有登录方式将合并",
+    "balanceSummed": "余额：{{amount}} ₽（合计）",
+    "unselectedSubscriptionDeleted": "未选择的订阅将被删除",
+    "historyPreserved": "交易记录将保留",
+    "confirm": "合并账户",
+    "cancel": "取消",
+    "expired": "合并链接已过期，请重试。",
+    "success": "账户合并成功！",
+    "error": "合并失败，请稍后重试。",
+    "expiresIn": "剩余 {{minutes}} 分钟",
+    "merging": "合并中..."
   }
 }

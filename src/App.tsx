@@ -39,6 +39,9 @@ const Connection = lazy(() => import('./pages/Connection'));
 const ConnectionQR = lazy(() => import('./pages/ConnectionQR'));
 const TopUpMethodSelect = lazy(() => import('./pages/TopUpMethodSelect'));
 const TopUpAmount = lazy(() => import('./pages/TopUpAmount'));
+const ConnectedAccounts = lazy(() => import('./pages/ConnectedAccounts'));
+const LinkOAuthCallback = lazy(() => import('./pages/LinkOAuthCallback'));
+const MergeAccounts = lazy(() => import('./pages/MergeAccounts'));
 
 // Admin pages - lazy load (only for admins)
 const AdminPanel = lazy(() => import('./pages/AdminPanel'));
@@ -89,6 +92,7 @@ const AdminRemnawave = lazy(() => import('./pages/AdminRemnawave'));
 const AdminRemnawaveSquadDetail = lazy(() => import('./pages/AdminRemnawaveSquadDetail'));
 const AdminEmailTemplates = lazy(() => import('./pages/AdminEmailTemplates'));
 const AdminTrafficUsage = lazy(() => import('./pages/AdminTrafficUsage'));
+const AdminSalesStats = lazy(() => import('./pages/AdminSalesStats'));
 const AdminUpdates = lazy(() => import('./pages/AdminUpdates'));
 const AdminUserDetail = lazy(() => import('./pages/AdminUserDetail'));
 const AdminBroadcastDetail = lazy(() => import('./pages/AdminBroadcastDetail'));
@@ -184,6 +188,14 @@ function App() {
         <Route path="/auth/oauth/callback" element={<OAuthCallback />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route
+          path="/merge/:mergeToken"
+          element={
+            <LazyPage>
+              <MergeAccounts />
+            </LazyPage>
+          }
+        />
 
         {/* Protected routes */}
         <Route
@@ -292,6 +304,26 @@ function App() {
             <ProtectedRoute>
               <LazyPage>
                 <Profile />
+              </LazyPage>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile/accounts"
+          element={
+            <ProtectedRoute>
+              <LazyPage>
+                <ConnectedAccounts />
+              </LazyPage>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/auth/link/callback"
+          element={
+            <ProtectedRoute>
+              <LazyPage>
+                <LinkOAuthCallback />
               </LazyPage>
             </ProtectedRoute>
           }
@@ -762,6 +794,16 @@ function App() {
             <PermissionRoute permission="traffic:read">
               <LazyPage>
                 <AdminTrafficUsage />
+              </LazyPage>
+            </PermissionRoute>
+          }
+        />
+        <Route
+          path="/admin/sales-stats"
+          element={
+            <PermissionRoute permission="stats:read">
+              <LazyPage>
+                <AdminSalesStats />
               </LazyPage>
             </PermissionRoute>
           }

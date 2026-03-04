@@ -536,6 +536,8 @@
     },
     "yourReferrals": "معرفی‌های شما",
     "noReferrals": "هنوز معرفی ندارید. لینک را به اشتراک بگذارید!",
+    "anonymousUser": "کاربر #{{id}}",
+    "anonymousReferral": "معرفی‌شده",
     "user": "کاربر",
     "joined": "تاریخ عضویت",
     "hasPaid": "پرداخت کرده",
@@ -583,6 +585,28 @@
         "subscriptionDesc": "{{days}} روز اشتراک رایگان",
         "tariff": "تعرفه جایزه",
         "tariffDesc": "طرح تعرفه رایگان"
+      },
+      "stats": {
+        "registrations": "ثبت‌نام",
+        "referrals": "معرفی‌شده‌ها",
+        "earnings": "درآمد",
+        "conversionRate": "نرخ تبدیل",
+        "today": "امروز",
+        "week": "هفته",
+        "month": "ماه",
+        "showDetails": "جزئیات",
+        "hideDetails": "بستن",
+        "vsLastWeek": "مقایسه با هفته قبل",
+        "topReferrals": "برترین معرفی‌شده‌ها",
+        "noData": "داده‌ای نیست",
+        "dailyChart": "روند ۳۰ روزه",
+        "periodComparison": "مقایسه دوره‌ها",
+        "noReferrals": "هنوز معرفی‌شده‌ای نیست",
+        "paid": "پرداخت شده",
+        "pending": "در انتظار",
+        "active": "فعال",
+        "referralsCount": "تعداد معرفی",
+        "earningsAmount": "کسب شده"
       },
       "fields": {
         "companyName": "نام شرکت",
@@ -841,7 +865,8 @@
       "roles": "نقش‌ها",
       "roleAssign": "تخصیص نقش",
       "policies": "سیاست‌های دسترسی",
-      "auditLog": "گزارش بازرسی"
+      "auditLog": "گزارش بازرسی",
+      "salesStats": "آمار فروش"
     },
     "panel": {
       "title": "پنل مدیریت",
@@ -873,7 +898,87 @@
       "rolesDesc": "مدیریت نقش‌ها و مجوزهای مدیران",
       "roleAssignDesc": "تخصیص و لغو نقش‌های کاربران",
       "policiesDesc": "تنظیم سیاست‌های کنترل دسترسی ABAC",
-      "auditLogDesc": "بررسی فعالیت سیستم و تاریخچه دسترسی"
+      "auditLogDesc": "بررسی فعالیت سیستم و تاریخچه دسترسی",
+      "salesStatsDesc": "تحلیل فروش و روندها"
+    },
+    "salesStats": {
+      "title": "آمار فروش",
+      "subtitle": "درآمد، آزمایشی، اشتراک و تمدید",
+      "period": {
+        "week": "۷ روز",
+        "month": "۳۰ روز",
+        "quarter": "۹۰ روز",
+        "all": "همه",
+        "custom": "سفارشی"
+      },
+      "tabs": {
+        "trials": "آزمایشی",
+        "sales": "فروش",
+        "renewals": "تمدید",
+        "addons": "خدمات اضافی",
+        "deposits": "شارژ"
+      },
+      "summary": {
+        "revenue": "درآمد",
+        "activeSubs": "اشتراک فعال",
+        "activeTrials": "آزمایشی فعال",
+        "newTrials": "آزمایشی جدید",
+        "conversion": "تبدیل",
+        "renewals": "تمدید",
+        "addonRevenue": "درآمد خدمات اضافی"
+      },
+      "trials": {
+        "total": "کل آزمایشی",
+        "totalRegistrations": "ثبت‌نام‌ها",
+        "trialsIssued": "آزمایشی صادرشده",
+        "conversion": "نرخ تبدیل",
+        "avgDuration": "میانگین مدت",
+        "byProvider": "بر اساس منبع",
+        "dailyChart": "ثبت‌نام و آزمایشی روزانه",
+        "registrations": "ثبت‌نام"
+      },
+      "sales": {
+        "totalSales": "کل فروش",
+        "avgOrder": "میانگین سفارش",
+        "topTariff": "تعرفه برتر",
+        "byTariff": "بر اساس تعرفه",
+        "byPeriod": "بر اساس دوره",
+        "dailyChart": "فروش روزانه",
+        "dailyByTariff": "فروش روزانه بر اساس تعرفه",
+        "subscriptions": "اشتراک‌ها"
+      },
+      "renewals": {
+        "total": "کل تمدیدها",
+        "rate": "نرخ تمدید",
+        "revenue": "درآمد",
+        "comparison": "مقایسه دوره",
+        "currentPeriod": "دوره فعلی",
+        "previousPeriod": "دوره قبلی",
+        "dailyChart": "تمدید روزانه",
+        "renewals": "تمدید"
+      },
+      "addons": {
+        "totalPurchases": "کل خرید",
+        "totalGb": "کل ترافیک",
+        "revenue": "درآمد",
+        "devicePurchases": "خرید دستگاه",
+        "deviceRevenue": "درآمد دستگاه",
+        "trafficPurchases": "ترافیک",
+        "devicePurchasesDaily": "دستگاه",
+        "byPackage": "بر اساس بسته",
+        "dailyChart": "خرید روزانه خدمات اضافی",
+        "purchases": "خرید"
+      },
+      "deposits": {
+        "totalDeposits": "کل شارژ",
+        "totalAmount": "مبلغ کل",
+        "avgDeposit": "میانگین شارژ",
+        "byMethod": "بر اساس روش پرداخت",
+        "dailyChart": "شارژ روزانه",
+        "dailyByMethod": "شارژ روزانه بر اساس روش پرداخت",
+        "revenue": "درآمد"
+      },
+      "loadError": "بارگذاری آمار ناموفق بود"
     },
     "trafficUsage": {
       "title": "مصرف ترافیک",
@@ -1670,7 +1775,15 @@
         "users": "کاربران",
         "noUsers": "کاربر ثبت‌نام شده‌ای وجود ندارد",
         "paid": "پرداخت کرده",
-        "hasSub": "دارای اشتراک"
+        "hasSub": "دارای اشتراک",
+        "dailyChart": "روند ۳۰ روزه",
+        "chartRegistrations": "ثبت‌نام‌ها",
+        "chartRevenue": "درآمد",
+        "totalDeposits": "کل واریزی‌ها",
+        "totalSpending": "هزینه اشتراک",
+        "periodComparison": "مقایسه دوره‌ها",
+        "vsLastWeek": "نسبت به هفته قبل",
+        "topRegistrations": "بالاترین ثبت‌نام‌ها"
       },
       "users": {
         "title": "کاربران کمپین",
@@ -1720,7 +1833,8 @@
         "approved": "تأیید شده",
         "rejected": "رد شده",
         "completed": "تکمیل شده",
-        "cancelled": "لغو شده"
+        "cancelled": "لغو شده",
+        "unknown": "ناشناخته"
       },
       "detail": {
         "title": "جزئیات برداشت",
@@ -2920,6 +3034,31 @@
       "promoOffers": "پیشنهادات تبلیغاتی",
       "promoOffersDesc": "دریافت پیشنهادات ویژه و تخفیف‌ها",
       "unavailable": "تنظیمات اعلان در دسترس نیست"
+    },
+    "accounts": {
+      "title": "حساب‌های متصل",
+      "subtitle": "مدیریت روش‌های ورود",
+      "linked": "متصل",
+      "notLinked": "متصل نیست",
+      "link": "اتصال",
+      "unlink": "قطع اتصال",
+      "unlinkConfirm": "آیا مطمئن هستید؟ پس از قطع اتصال نمی‌توانید از طریق این سرویس وارد شوید.",
+      "unlinkConfirmBtn": "تأیید قطع اتصال؟",
+      "cannotUnlinkLast": "نمی‌توان آخرین روش ورود را قطع کرد",
+      "linkSuccess": "حساب با موفقیت متصل شد",
+      "unlinkSuccess": "اتصال حساب با موفقیت قطع شد",
+      "linkError": "اتصال حساب ناموفق بود",
+      "unlinkError": "قطع اتصال ناموفق بود",
+      "goToAccounts": "حساب‌های متصل",
+      "linking": "در حال اتصال حساب...",
+      "providers": {
+        "telegram": "تلگرام",
+        "email": "ایمیل",
+        "google": "گوگل",
+        "yandex": "یاندکس",
+        "discord": "دیسکورد",
+        "vk": "VK"
+      }
     }
   },
   "theme": {
@@ -3244,5 +3383,32 @@
       "reason": "دلیل",
       "contactSupport": "اگر فکر می‌کنید این اشتباه است، با پشتیبانی تماس بگیرید."
     }
+  },
+  "merge": {
+    "title": "ادغام حساب‌ها",
+    "description": "این روش ورود به حساب دیگری متصل است. می‌توانید هر دو حساب را ادغام کنید.",
+    "currentAccount": "حساب فعلی شما",
+    "foundAccount": "حساب یافت شده",
+    "authMethods": "روش‌های ورود",
+    "subscription": "اشتراک",
+    "noSubscription": "بدون اشتراک",
+    "traffic": "ترافیک",
+    "devices": "دستگاه‌ها",
+    "balance": "موجودی",
+    "until": "تا {{date}}",
+    "keepThisSubscription": "نگه داشتن این اشتراک",
+    "chooseSubscription": "اشتراک مورد نظر را انتخاب کنید",
+    "afterMerge": "پس از ادغام",
+    "allAuthMethodsMerged": "تمام روش‌های ورود ادغام خواهند شد",
+    "balanceSummed": "موجودی: {{amount}} ₽ (مجموع)",
+    "unselectedSubscriptionDeleted": "اشتراک انتخاب نشده حذف خواهد شد",
+    "historyPreserved": "تاریخچه تراکنش‌ها حفظ خواهد شد",
+    "confirm": "ادغام حساب‌ها",
+    "cancel": "لغو",
+    "expired": "لینک ادغام منقضی شده است. لطفاً دوباره تلاش کنید.",
+    "success": "حساب‌ها با موفقیت ادغام شدند!",
+    "error": "ادغام ناموفق بود. لطفاً بعداً دوباره تلاش کنید.",
+    "expiresIn": "{{minutes}} دقیقه باقی مانده",
+    "merging": "در حال ادغام..."
   }
 }
