@@ -836,6 +836,14 @@
       "none": "بدون پس‌زمینه",
       "noneDesc": "غیرفعال کردن پس‌زمینه متحرک"
     },
+    "groups": {
+      "analytics": "تجزیه و تحلیل и گزارش‌ها",
+      "users": "کاربران и تیکت‌ها",
+      "tariffs": "تعرفه‌ها и پرداخت‌ها",
+      "marketing": "بازاریابی",
+      "system": "سیستم",
+      "security": "امنیت"
+    },
     "nav": {
       "title": "مدیریت",
       "dashboard": "آمار",
@@ -1452,6 +1460,9 @@
       "modeBoth": "تیکت و تماس",
       "modeTickets": "فقط تیکت",
       "modeContact": "فقط تماس",
+      "modeAiTiket": "تیکت هوشمند (AI)",
+      "configureAiProviders": "پیکربندی هوش مصنوعی",
+      "configureAiFaq": "پیکربندی پایگاه دانش",
       "slaSettings": "تنظیمات SLA",
       "slaEnabled": "فعال کردن SLA (نظارت بر زمان پاسخ)",
       "slaEnabledDesc": "اعلان‌های خودکار برای تیکت‌های معوقه",
@@ -1469,6 +1480,81 @@
       "viewUser": "کاربر",
       "userNotificationsEnabled": "اعلان‌های کاربر",
       "userNotificationsEnabledDesc": "ارسال اعلان به کاربران درباره پاسخ‌های مدیر"
+    },
+    "aiProviders": {
+      "title": "مدیریت ارائه‌دهندگان هوش مصنوعی",
+      "subtitle": "پیکربندی کلیدها و مدل‌های هوش مصنوعی",
+      "provider": "ارائه‌دهنده",
+      "status": {
+        "active": "فعال",
+        "inactive": "غیرفعال"
+      },
+      "priority": "اولویت: {{priority}}",
+      "keysCount": "{{count}} کلید",
+      "model": "مدل",
+      "testConnection": "تست",
+      "configure": "پیکربندی",
+      "systemPrompt": "System Prompt",
+      "promptDesc": "دستورالعمل‌های عامل هوش مصنوعی",
+      "savePrompt": "ذخیره پراپمت",
+      "resetPrompt": "بازنشانی به پیش‌فرض",
+      "apiKeys": "کلیدهای API",
+      "addKey": "افزودن کلید",
+      "addKeyPlaceholder": "کلید API جدید را وارد کنید",
+      "deleteKeyHint": "حذف کلید",
+      "testSuccess": "اتصال موفق",
+      "testError": "خطای اتصال",
+      "updatedSuccess": "با موفقیت به‌روز شد",
+      "updateError": "خطا در به‌روزرسانی",
+      "loadError": "خطا در بارگذاری لیست ارائه‌دهندگان",
+      "enableProvider": "فعال‌سازی ارائه‌دهنده",
+      "keyPlaceholder": "کلید API",
+      "modelsFound": "مدل یافت شد",
+      "connectionOk": "اتصال برقرار شد",
+      "selectModel": "انتخاب مدل",
+      "customPrompt": "سفارشی"
+    },
+    "aiFaq": {
+      "title": "پایگاه دانش هوش مصنوعی",
+      "subtitle": "مدیریت مقالات и دستورالعمل‌ها برای دستیار هوش مصنوعی",
+      "createPage": "ایجاد مقاله",
+      "editPage": "ویرایش مقاله",
+      "pageTitle": "عنوان مقاله",
+      "pageTitlePlaceholder": "مثال: نحوه تنظیم VPN در اندروید",
+      "pageKeywords": "کلمات کلیدی (جدا شده با کاما)",
+      "pageKeywordsPlaceholder": "اندروید، vpn، تنظیمات، اتصال",
+      "pageContent": "محتوای مقاله",
+      "pageContentPlaceholder": "دستورالعمل‌های دقیق یا اطلاعات برای هوش مصنوعی...",
+      "isActive": "مقاله فعال است",
+      "save": "ذخیره",
+      "cancel": "لغو",
+      "noPages": "هنوز مقاله‌ای وجود ندارد. اولین مورد را بسازید!",
+      "statusEnabled": "فعال",
+      "statusDisabled": "پیش‌نویس",
+      "deletePage": "حذف مقاله",
+      "deleteConfirm": "آیا مطمئن هستید؟",
+      "deleteConfirmText": "این عمل باعث حذف مقاله и تمام فایل‌های رسانه‌ای مرتبط می‌شود.",
+      "createdSuccess": "مقاله با موفقیت ایجاد شد",
+      "updatedSuccess": "مقاله به‌روزرسانی شد",
+      "deletedSuccess": "مقاله حذف شد",
+      "createError": "خطا در ایجاد مقاله",
+      "updateError": "خطا در به‌روزرسانی مقاله",
+      "deleteError": "خطا در حذف مقاله",
+      "media": {
+        "title": "فایل‌های رسانه‌ای",
+        "add": "افزودن رسانه",
+        "tag": "برچسب (منحصر به فرد)",
+        "tagPlaceholder": "setup_android_1",
+        "fileId": "Telegram File ID",
+        "type": "نوع",
+        "caption": "توضیح برای هوش مصنوعی",
+        "delete": "حذف",
+        "types": {
+          "photo": "عکس",
+          "video": "ویدیو",
+          "animation": "GIF/انیمیشن"
+        }
+      }
     },
     "tariffs": {
       "title": "مدیریت تعرفه‌ها",
@@ -2415,14 +2501,6 @@
         "purchaseDiscount": "تخفیف خرید",
         "purchaseDiscountDesc": "تخفیف برای کاربران جدید"
       }
-    },
-    "groups": {
-      "analytics": "تحلیل‌ها",
-      "marketing": "بازاریابی",
-      "system": "سیستم",
-      "tariffs": "تعرفه‌ها و فروش",
-      "users": "کاربران",
-      "security": "امنیت"
     },
     "remnawave": {
       "connected": "متصل",

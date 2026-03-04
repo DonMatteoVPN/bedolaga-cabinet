@@ -836,6 +836,14 @@
       "none": "无背景",
       "noneDesc": "禁用动画背景"
     },
+    "groups": {
+      "analytics": "分析与报告",
+      "users": "用户与工单",
+      "tariffs": "套餐与支付",
+      "marketing": "营销",
+      "system": "系统",
+      "security": "安全"
+    },
     "nav": {
       "title": "管理",
       "dashboard": "统计",
@@ -1490,6 +1498,9 @@
       "modeBoth": "工单和联系方式",
       "modeTickets": "仅工单",
       "modeContact": "仅联系方式",
+      "modeAiTiket": "智能工单 (AI)",
+      "configureAiProviders": "配置 AI 提供商",
+      "configureAiFaq": "配置知识库",
       "slaSettings": "SLA设置",
       "slaEnabled": "启用 SLA（响应时间监控）",
       "slaEnabledDesc": "自动通知过期工单",
@@ -1507,6 +1518,81 @@
       "viewUser": "用户",
       "userNotificationsEnabled": "用户通知",
       "userNotificationsEnabledDesc": "向用户发送管理员回复通知"
+    },
+    "aiProviders": {
+      "title": "AI 提供商管理",
+      "subtitle": "配置人工智能密钥和模型",
+      "provider": "提供商",
+      "status": {
+        "active": "激活",
+        "inactive": "未激活"
+      },
+      "priority": "优先级: {{priority}}",
+      "keysCount": "{{count}} 个密钥",
+      "model": "模型",
+      "testConnection": "测试",
+      "configure": "配置",
+      "systemPrompt": "系统提示词",
+      "promptDesc": "AI 代理的说明",
+      "savePrompt": "保存提示词",
+      "resetPrompt": "恢复默认",
+      "apiKeys": "API 密钥",
+      "addKey": "添加密钥",
+      "addKeyPlaceholder": "输入新 API 密钥",
+      "deleteKeyHint": "删除密钥",
+      "testSuccess": "连接成功",
+      "testError": "连接失败",
+      "updatedSuccess": "更新成功",
+      "updateError": "更新失败",
+      "loadError": "加载提供商列表失败",
+      "enableProvider": "启用提供商",
+      "keyPlaceholder": "API 密钥",
+      "modelsFound": "找到模型",
+      "connectionOk": "连接已建立",
+      "selectModel": "选择模型",
+      "customPrompt": "自定义"
+    },
+    "aiFaq": {
+      "title": "AI 知识库",
+      "subtitle": "管理 AI 助手的文章和指令",
+      "createPage": "创建文章",
+      "editPage": "编辑文章",
+      "pageTitle": "文章标题",
+      "pageTitlePlaceholder": "例如：如何在 Android 上设置 VPN",
+      "pageKeywords": "关键词（逗号分隔）",
+      "pageKeywordsPlaceholder": "android, vpn, 设置, 连接",
+      "pageContent": "文章内容",
+      "pageContentPlaceholder": "AI 的详细说明或信息...",
+      "isActive": "文章已激活",
+      "save": "保存",
+      "cancel": "取消",
+      "noPages": "尚无文章。创建您的第一篇！",
+      "statusEnabled": "有效",
+      "statusDisabled": "草稿",
+      "deletePage": "删除文章",
+      "deleteConfirm": "您确定吗？",
+      "deleteConfirmText": "此操作将删除文章及所有相关媒体文件。",
+      "createdSuccess": "文章创建成功",
+      "updatedSuccess": "文章已更新",
+      "deletedSuccess": "文章已删除",
+      "createError": "创建文章时出错",
+      "updateError": "更新文章时出错",
+      "deleteError": "删除文章时出错",
+      "media": {
+        "title": "媒体文件",
+        "add": "添加媒体",
+        "tag": "标签（唯一）",
+        "tagPlaceholder": "setup_android_1",
+        "fileId": "Telegram 文件 ID",
+        "type": "类型",
+        "caption": "AI 说明",
+        "delete": "删除",
+        "types": {
+          "photo": "照片",
+          "video": "视频",
+          "animation": "GIF/动画"
+        }
+      }
     },
     "tariffs": {
       "title": "套餐管理",
@@ -2415,23 +2501,6 @@
         "purchaseDiscountDesc": "新用户折扣"
       }
     },
-    "groups": {
-      "analytics": "分析",
-      "marketing": "营销",
-      "system": "系统",
-      "tariffs": "套餐与销售",
-      "users": "用户",
-      "security": "安全"
-    },
-    "theme": {
-      "accentColor": "强调色",
-      "customizeColors": "自定义颜色",
-      "hexCode": "HEX代码",
-      "hue": "色调",
-      "lightness": "亮度",
-      "quickPresets": "快速预设",
-      "saturation": "饱和度"
-    },
     "remnawave": {
       "connected": "已连接",
       "disconnected": "未配置",
@@ -3044,6 +3113,12 @@
     "customColorsDescription": "单独自定义每种颜色",
     "accent": "主题色",
     "accentDescription": "用于按钮、链接和交互元素的主品牌颜色",
+    "accentColor": "强调色",
+    "customizeColors": "自定义颜色",
+    "hexCode": "HEX代码",
+    "hue": "色调",
+    "lightness": "亮度",
+    "saturation": "饱和度",
     "darkTheme": "深色主题",
     "lightTheme": "浅色主题",
     "background": "背景",

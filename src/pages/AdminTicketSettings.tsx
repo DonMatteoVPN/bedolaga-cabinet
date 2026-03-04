@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-hot-toast';
 import { adminApi } from '../api/admin';
 import { AdminBackButton } from '../components/admin';
 import { toNumber } from '../utils/inputHelpers';
+import { Select, SelectTrigger, SelectContent, SelectItem } from '../components/primitives/Select';
 
 type NumberOrEmpty = number | '';
 
@@ -46,7 +48,7 @@ export default function AdminTicketSettings() {
     sla_minutes: 5,
     sla_check_interval_seconds: 60,
     sla_reminder_cooldown_minutes: 15,
-    support_system_mode: 'both',
+    support_system_mode: 'tickets',
     cabinet_user_notifications_enabled: true,
     cabinet_admin_notifications_enabled: true,
   });
@@ -58,7 +60,7 @@ export default function AdminTicketSettings() {
         sla_minutes: settings.sla_minutes,
         sla_check_interval_seconds: settings.sla_check_interval_seconds,
         sla_reminder_cooldown_minutes: settings.sla_reminder_cooldown_minutes,
-        support_system_mode: settings.support_system_mode,
+        support_system_mode: settings.support_system_mode || 'tickets',
         cabinet_user_notifications_enabled: settings.cabinet_user_notifications_enabled ?? true,
         cabinet_admin_notifications_enabled: settings.cabinet_admin_notifications_enabled ?? true,
       });
@@ -69,7 +71,7 @@ export default function AdminTicketSettings() {
     mutationFn: adminApi.updateTicketSettings,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['ticket-settings'] });
-      navigate('/admin/tickets');
+      toast.success(t('common.updatedSuccess', 'Успешно обновлено'));
     },
   });
 
@@ -147,133 +149,36 @@ export default function AdminTicketSettings() {
             {t('admin.tickets.supportMode')}
           </h3>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Tickets */}
-            <label
-              className={`relative flex cursor-pointer rounded-xl border p-4 transition-all hover:bg-dark-800/50 ${
-                formData.support_system_mode === 'tickets'
-                  ? 'border-accent-500 bg-accent-500/10 ring-1 ring-accent-500'
-                  : 'border-dark-700 bg-dark-800/20'
-              }`}
+          <div className="flex flex-col gap-4">
+            <Select
+              value={formData.support_system_mode}
+              onValueChange={(value) => setFormData({ ...formData, support_system_mode: value })}
             >
-              <input
-                type="radio"
-                name="support_mode"
-                value="tickets"
-                className="sr-only"
-                checked={formData.support_system_mode === 'tickets'}
-                onChange={(e) => setFormData({ ...formData, support_system_mode: e.target.value })}
+              <SelectTrigger
+                className="w-full sm:w-[300px]"
+                placeholder={t('admin.tickets.modeTickets', 'Только тикеты')}
               />
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center justify-between">
-                  <span
-                    className={`text-sm font-medium ${formData.support_system_mode === 'tickets' ? 'text-accent-400' : 'text-dark-200'}`}
-                  >
+              <SelectContent>
+                <SelectItem value="tickets">
+                  <span className="flex items-center gap-2">
                     🎫 {t('admin.tickets.modeTickets')}
                   </span>
-                  {formData.support_system_mode === 'tickets' && (
-                    <div className="h-2 w-2 rounded-full bg-accent-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]" />
-                  )}
-                </div>
-              </div>
-            </label>
-
-            {/* Contact */}
-            <label
-              className={`relative flex cursor-pointer rounded-xl border p-4 transition-all hover:bg-dark-800/50 ${
-                formData.support_system_mode === 'contact'
-                  ? 'border-accent-500 bg-accent-500/10 ring-1 ring-accent-500'
-                  : 'border-dark-700 bg-dark-800/20'
-              }`}
-            >
-              <input
-                type="radio"
-                name="support_mode"
-                value="contact"
-                className="sr-only"
-                checked={formData.support_system_mode === 'contact'}
-                onChange={(e) => setFormData({ ...formData, support_system_mode: e.target.value })}
-              />
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center justify-between">
-                  <span
-                    className={`text-sm font-medium ${formData.support_system_mode === 'contact' ? 'text-accent-400' : 'text-dark-200'}`}
-                  >
+                </SelectItem>
+                <SelectItem value="contact">
+                  <span className="flex items-center gap-2">
                     💬 {t('admin.tickets.modeContact')}
                   </span>
-                  {formData.support_system_mode === 'contact' && (
-                    <div className="h-2 w-2 rounded-full bg-accent-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]" />
-                  )}
-                </div>
-              </div>
-            </label>
-
-            {/* Both */}
-            <label
-              className={`relative flex cursor-pointer rounded-xl border p-4 transition-all hover:bg-dark-800/50 ${
-                formData.support_system_mode === 'both'
-                  ? 'border-accent-500 bg-accent-500/10 ring-1 ring-accent-500'
-                  : 'border-dark-700 bg-dark-800/20'
-              }`}
-            >
-              <input
-                type="radio"
-                name="support_mode"
-                value="both"
-                className="sr-only"
-                checked={formData.support_system_mode === 'both'}
-                onChange={(e) => setFormData({ ...formData, support_system_mode: e.target.value })}
-              />
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center justify-between">
-                  <span
-                    className={`text-sm font-medium ${formData.support_system_mode === 'both' ? 'text-accent-400' : 'text-dark-200'}`}
-                  >
-                    🎭 {t('admin.tickets.modeBoth')}
-                  </span>
-                  {formData.support_system_mode === 'both' && (
-                    <div className="h-2 w-2 rounded-full bg-accent-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]" />
-                  )}
-                </div>
-              </div>
-            </label>
-
-            {/* AI Tiket */}
-            <label
-              className={`relative flex cursor-pointer rounded-xl border p-4 transition-all hover:bg-emerald-900/30 ${
-                formData.support_system_mode === 'ai_tiket'
-                  ? 'border-emerald-500 bg-emerald-500/10 ring-1 ring-emerald-500'
-                  : 'border-dark-700 bg-dark-800/20'
-              }`}
-            >
-              <input
-                type="radio"
-                name="support_mode"
-                value="ai_tiket"
-                className="sr-only"
-                checked={formData.support_system_mode === 'ai_tiket'}
-                onChange={(e) => setFormData({ ...formData, support_system_mode: e.target.value })}
-              />
-              <div className="relative flex w-full flex-col gap-1 overflow-hidden">
-                <div className="relative z-10 flex items-center justify-between">
-                  <span
-                    className={`flex items-center gap-2 text-sm font-semibold ${formData.support_system_mode === 'ai_tiket' ? 'text-emerald-400' : 'text-dark-200'}`}
-                  >
+                </SelectItem>
+                <SelectItem value="both">
+                  <span className="flex items-center gap-2">🎭 {t('admin.tickets.modeBoth')}</span>
+                </SelectItem>
+                <SelectItem value="ai_tiket" className="text-emerald-400 focus:text-emerald-300">
+                  <span className="flex items-center gap-2 font-semibold">
                     🤖 {t('admin.tickets.modeAiTiket', 'DonMatteo-AI-Tiket')}
                   </span>
-                  {formData.support_system_mode === 'ai_tiket' && (
-                    <div className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
-                  )}
-                </div>
-                {formData.support_system_mode === 'ai_tiket' && (
-                  <div className="pointer-events-none absolute -bottom-6 -right-4 text-emerald-500/10">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v2h-2v4a2 2 0 0 1-2 2h-2v2a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2H6a2 2 0 0 1-2-2v-4H2v-2a2 2 0 0 1 2-2V8a2 2 0 0 1 2-2h2V4a2 2 0 0 1 2-2h4zm0 2h-4v2H6v4H4v2h2v4h2v2h4v-2h2v-4h2v-2h-2V8h-2V6h-2V4z" />
-                    </svg>
-                  </div>
-                )}
-              </div>
-            </label>
+                </SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <p className="mt-4 text-sm text-dark-500">{t('admin.tickets.supportModeDesc')}</p>
