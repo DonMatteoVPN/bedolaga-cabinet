@@ -89,6 +89,7 @@ const AdminRemnawave = lazy(() => import('./pages/AdminRemnawave'));
 const AdminRemnawaveSquadDetail = lazy(() => import('./pages/AdminRemnawaveSquadDetail'));
 const AdminEmailTemplates = lazy(() => import('./pages/AdminEmailTemplates'));
 const AdminTrafficUsage = lazy(() => import('./pages/AdminTrafficUsage'));
+const AdminSalesStats = lazy(() => import('./pages/AdminSalesStats'));
 const AdminUpdates = lazy(() => import('./pages/AdminUpdates'));
 const AdminUserDetail = lazy(() => import('./pages/AdminUserDetail'));
 const AdminBroadcastDetail = lazy(() => import('./pages/AdminBroadcastDetail'));
@@ -762,6 +763,16 @@ function App() {
             <PermissionRoute permission="traffic:read">
               <LazyPage>
                 <AdminTrafficUsage />
+              </LazyPage>
+            </PermissionRoute>
+          }
+        />
+        <Route
+          path="/admin/sales-stats"
+          element={
+            <PermissionRoute permission="stats:read">
+              <LazyPage>
+                <AdminSalesStats />
               </LazyPage>
             </PermissionRoute>
           }
