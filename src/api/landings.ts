@@ -326,10 +326,22 @@ export interface LandingTariffStat {
   revenue_kopeks: number;
 }
 
+export interface LandingPaymentMethodStat {
+  method: string;
+  purchases: number;
+  revenue_kopeks: number;
+}
+
+export interface LandingSourceStat {
+  source: string;
+  purchases: number;
+}
+
 export interface LandingStatsResponse {
   total_purchases: number;
   total_revenue_kopeks: number;
   total_gifts: number;
+  total_gifts_claimed: number;
   total_regular: number;
   avg_purchase_kopeks: number;
   total_created: number;
@@ -337,6 +349,8 @@ export interface LandingStatsResponse {
   conversion_rate: number;
   daily_stats: LandingDailyStat[];
   tariff_stats: LandingTariffStat[];
+  payment_method_stats: LandingPaymentMethodStat[];
+  source_stats: LandingSourceStat[];
 }
 
 export type PurchaseItemStatus =
