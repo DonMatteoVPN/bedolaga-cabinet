@@ -9,6 +9,7 @@ import {
   preloadLogo,
   isLogoPreloaded,
 } from '@/api/branding';
+import { setFavicon, letterFaviconDataUri } from '@/utils/favicon';
 
 const FALLBACK_NAME = import.meta.env.VITE_APP_NAME || 'Cabinet';
 const FALLBACK_LOGO = import.meta.env.VITE_APP_LOGO || 'V';
@@ -42,18 +43,11 @@ export function useBranding() {
     document.title = appName || 'VPN';
   }, [appName]);
 
-  // Update favicon
+  // Update favicon — custom logo when available, else a brand-letter monogram
+  // so the tab always carries an icon instead of the browser default.
   useEffect(() => {
-    if (!logoUrl) return;
-
-    const link =
-      document.querySelector<HTMLLinkElement>("link[rel*='icon']") ||
-      document.createElement('link');
-    link.type = 'image/x-icon';
-    link.rel = 'shortcut icon';
-    link.href = logoUrl;
-    document.head.appendChild(link);
-  }, [logoUrl]);
+    setFavicon(logoUrl || letterFaviconDataUri(logoLetter));
+  }, [logoUrl, logoLetter]);
 
   // Fullscreen setting from server
   const { data: fullscreenSetting } = useQuery({

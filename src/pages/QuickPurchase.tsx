@@ -7,6 +7,13 @@ import { fireAnalyticsEvent, getYandexCid } from '../hooks/useAnalyticsCounters'
 import { motion, AnimatePresence } from 'framer-motion';
 import DOMPurify from 'dompurify';
 import { landingApi } from '../api/landings';
+import {
+  brandingApi,
+  getCachedBranding,
+  setCachedBranding,
+  preloadLogo,
+  getLogoBlobUrl,
+} from '../api/branding';
 import type {
   LandingConfig,
   LandingTariff,
@@ -20,6 +27,7 @@ import LanguageSwitcher from '../components/LanguageSwitcher';
 import { cn } from '../lib/utils';
 import { getApiErrorMessage } from '../utils/api-error';
 import { formatPrice } from '../utils/format';
+import { setFavicon, letterFaviconDataUri } from '../utils/favicon';
 import { useCurrency } from '../hooks/useCurrency';
 
 function detectContactType(value: string): 'email' | 'telegram' {
@@ -772,6 +780,31 @@ export default function QuickPurchase() {
     retry: 1,
   });
 
+  // Public branding — drives the favicon on this standalone landing page.
+  // The cabinet's useBranding hook is auth-gated and AppShell-only, so a public
+  // landing would otherwise keep the empty index.html favicon. The branding
+  // endpoint is public; logo is preloaded as a blob to keep the backend URL out
+  // of the DOM (same pattern as the authenticated app).
+  const { data: branding } = useQuery({
+    queryKey: ['branding'],
+    queryFn: async () => {
+      const data = await brandingApi.getBranding();
+      setCachedBranding(data);
+      await preloadLogo(data);
+      return data;
+    },
+    initialData: getCachedBranding() ?? undefined,
+    initialDataUpdatedAt: 0,
+    staleTime: 60_000,
+    retry: 1,
+  });
+
+  useEffect(() => {
+    if (!branding) return;
+    const logoUrl = branding.has_custom_logo ? getLogoBlobUrl() : null;
+    setFavicon(logoUrl || letterFaviconDataUri(branding.logo_letter));
+  }, [branding]);
+
   const [discountExpired, setDiscountExpired] = useState(false);
 
   const handleDiscountExpired = useCallback(() => {
@@ -900,15 +933,18 @@ export default function QuickPurchase() {
     }
   }, [visibleTariffs, selectedTariffId]);
 
-  // SEO: set document title
+  // SEO: set document title. Fall back to the landing's own title when no
+  // dedicated meta_title is set — otherwise the tab keeps the static
+  // index.html "VPN" placeholder and never reflects the landing.
   useEffect(() => {
-    if (!config?.meta_title) return;
+    const pageTitle = config?.meta_title || config?.title;
+    if (!pageTitle) return;
     const prev = document.title;
-    document.title = config.meta_title;
+    document.title = pageTitle;
     return () => {
       document.title = prev;
     };
-  }, [config?.meta_title]);
+  }, [config?.meta_title, config?.title]);
 
   // SEO: set meta description
   useEffect(() => {

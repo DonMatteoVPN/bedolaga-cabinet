@@ -25,6 +25,9 @@ export interface LandingTariff {
   device_limit: number;
   tier_level: number;
   periods: LandingTariffPeriod[];
+  /** Daily tariff: the single purchasable period is 1 day, priced per day. */
+  is_daily?: boolean;
+  daily_price_kopeks?: number;
 }
 
 export interface LandingPaymentMethodSubOption {
