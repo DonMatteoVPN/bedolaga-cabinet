@@ -683,7 +683,7 @@ export default function ConnectedAccounts() {
                   )}
                 </div>
               </div>
-              <div className="flex shrink-0 items-center gap-2">
+              <div className="flex shrink-0 flex-col items-end gap-1.5">
                 {provider.linked ? (
                   <>
                     <span className="text-sm text-success-500">{t('profile.accounts.linked')}</span>
