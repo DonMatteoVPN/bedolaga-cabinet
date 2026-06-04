@@ -147,7 +147,7 @@ export function AppShell({ children }: AppShellProps) {
         onClick={handleNavClick}
         aria-label={label}
         className={cn(
-          'relative flex items-center gap-2 rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200',
+          'relative flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[13px] font-medium transition-colors duration-200',
           active
             ? admin
               ? 'text-warning-400'
@@ -167,7 +167,7 @@ export function AppShell({ children }: AppShellProps) {
             transition={{ type: 'spring', stiffness: 500, damping: 35 }}
           />
         )}
-        <Icon className="relative h-[17px] w-[17px] shrink-0" />
+        <Icon className="relative h-4 w-4 shrink-0" />
         <span className="relative whitespace-nowrap">{label}</span>
       </Link>
     );
@@ -188,9 +188,9 @@ export function AppShell({ children }: AppShellProps) {
 
       {/* Desktop Header */}
       <header className="fixed left-0 right-0 top-0 z-50 hidden border-b border-dark-800/50 bg-dark-950/95 lg:block">
-        <div className="mx-auto grid h-14 max-w-6xl grid-cols-[auto_1fr_auto] items-center gap-4 px-6">
+        <div className="mx-auto flex h-14 max-w-[1600px] items-center gap-5 px-6">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5" onClick={handleNavClick}>
+          <Link to="/" className="flex shrink-0 items-center gap-2.5" onClick={handleNavClick}>
             <div className="relative flex h-8 w-8 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg bg-dark-800">
               <span
                 className={cn(
@@ -214,8 +214,8 @@ export function AppShell({ children }: AppShellProps) {
             <span className="text-base font-semibold text-dark-100">{appName}</span>
           </Link>
 
-          {/* Center Navigation */}
-          <nav className="flex min-w-0 items-center justify-center gap-0.5">
+          {/* Navigation — labels always visible, all items shown, no scroll/shrink */}
+          <nav className="flex items-center gap-0.5">
             {desktopNav.map((item) => renderNavLink(item.path, item.label, item.icon))}
             {isAdmin && (
               <>
@@ -225,8 +225,8 @@ export function AppShell({ children }: AppShellProps) {
             )}
           </nav>
 
-          {/* Right side actions */}
-          <div className="flex items-center justify-end gap-2">
+          {/* Right side actions — pinned right, never shrink */}
+          <div className="ml-auto flex shrink-0 items-center gap-2">
             <button
               onClick={() => {
                 haptic.impact('light');
@@ -234,7 +234,7 @@ export function AppShell({ children }: AppShellProps) {
               }}
               className={cn(
                 'rounded-xl border border-dark-700/50 bg-dark-800/50 p-2 text-dark-400 transition-colors duration-200 hover:bg-dark-700 hover:text-accent-400',
-                !canToggleTheme && 'pointer-events-none invisible',
+                !canToggleTheme && 'hidden',
               )}
               aria-label={
                 isDark ? t('theme.light') || 'Light mode' : t('theme.dark') || 'Dark mode'
