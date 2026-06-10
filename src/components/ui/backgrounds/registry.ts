@@ -59,9 +59,15 @@ export const backgroundRegistry: BackgroundDefinition[] = [
     descriptionKey: 'admin.backgrounds.auroraDesc',
     category: 'css',
     settings: [
-      { key: 'firstColor', label: 'admin.backgrounds.color1', type: 'color', default: '#00d2ff' },
-      { key: 'secondColor', label: 'admin.backgrounds.color2', type: 'color', default: '#7928ca' },
-      { key: 'thirdColor', label: 'admin.backgrounds.color3', type: 'color', default: '#ff0080' },
+      { key: 'firstColor', label: 'admin.backgrounds.color1', type: 'color', default: '#3b82f6' },
+      { key: 'secondColor', label: 'admin.backgrounds.color2', type: 'color', default: '#a5b4fc' },
+      { key: 'thirdColor', label: 'admin.backgrounds.color3', type: 'color', default: '#93c5fd' },
+      {
+        key: 'showRadialGradient',
+        label: 'admin.backgrounds.radialGradient',
+        type: 'boolean',
+        default: true,
+      },
       {
         key: 'speed',
         label: 'admin.backgrounds.speed',
