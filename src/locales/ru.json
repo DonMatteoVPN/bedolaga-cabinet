@@ -1200,6 +1200,8 @@
       "trailColor": "Цвет следа",
       "bgStarColor": "Цвет фоновых звёзд",
       "pointerColor": "Цвет курсорного блоба",
+      "beamColor": "Цвет лучей",
+      "explosionColor": "Цвет взрыва",
       "bgColor": "Цвет фона",
       "fillColor": "Цвет заливки",
       "color1": "Цвет 1",

@@ -1,4 +1,5 @@
 import React from 'react';
+import { sanitizeColor } from './types';
 import { useAnimationPause } from '@/hooks/useAnimationLoop';
 
 interface Props {
@@ -99,10 +100,14 @@ function ensureStyles() {
   document.head.appendChild(style);
 }
 
-export default React.memo(function BackgroundBeams({ settings: _settings }: Props) {
+export default React.memo(function BackgroundBeams({ settings }: Props) {
   const paused = useAnimationPause();
 
-  // Inject CSS once on first render
+  const gradientStart = sanitizeColor(settings.gradientStart, '#18CCFC');
+  const gradientMid = sanitizeColor(settings.gradientMid, '#6344F5');
+  const gradientEnd = sanitizeColor(settings.gradientEnd, '#AE48FF');
+  const staticColor = sanitizeColor(settings.staticColor, '#d4d4d4');
+
   React.useEffect(() => {
     ensureStyles();
   }, []);
@@ -117,7 +122,6 @@ export default React.memo(function BackgroundBeams({ settings: _settings }: Prop
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Static background — all paths at very low opacity */}
         <path
           d={bgPath}
           stroke="url(#paint0_radial_beams)"
@@ -125,7 +129,6 @@ export default React.memo(function BackgroundBeams({ settings: _settings }: Prop
           strokeWidth="0.5"
         />
 
-        {/* Animated beams — only every 3rd path (17 beams), pure stroke-dashoffset */}
         {animatedPaths.map(({ path, paramIndex }) => (
           <path
             key={paramIndex}
@@ -144,15 +147,13 @@ export default React.memo(function BackgroundBeams({ settings: _settings }: Prop
         ))}
 
         <defs>
-          {/* Single shared gradient for all beams (cyan → purple → magenta) */}
           <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop stopColor="#18CCFC" stopOpacity="0" />
-            <stop offset="10%" stopColor="#18CCFC" />
-            <stop offset="50%" stopColor="#6344F5" />
-            <stop offset="100%" stopColor="#AE48FF" stopOpacity="0" />
+            <stop stopColor={gradientStart} stopOpacity="0" />
+            <stop offset="10%" stopColor={gradientStart} />
+            <stop offset="50%" stopColor={gradientMid} />
+            <stop offset="100%" stopColor={gradientEnd} stopOpacity="0" />
           </linearGradient>
 
-          {/* Radial gradient for static background */}
           <radialGradient
             id="paint0_radial_beams"
             cx="0"
@@ -161,9 +162,9 @@ export default React.memo(function BackgroundBeams({ settings: _settings }: Prop
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(352 34) rotate(90) scale(555 1560.62)"
           >
-            <stop offset="0.0666667" stopColor="#d4d4d4" />
-            <stop offset="0.243243" stopColor="#d4d4d4" />
-            <stop offset="0.43594" stopColor="white" stopOpacity="0" />
+            <stop offset="0.0666667" stopColor={staticColor} />
+            <stop offset="0.243243" stopColor={staticColor} />
+            <stop offset="0.43594" stopColor={staticColor} stopOpacity="0" />
           </radialGradient>
         </defs>
       </svg>

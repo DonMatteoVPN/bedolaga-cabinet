@@ -234,14 +234,37 @@ export const backgroundRegistry: BackgroundDefinition[] = [
     labelKey: 'admin.backgrounds.beams',
     descriptionKey: 'admin.backgrounds.beamsDesc',
     category: 'svg',
-    settings: [],
+    settings: [
+      {
+        key: 'gradientStart',
+        label: 'admin.backgrounds.color1',
+        type: 'color',
+        default: '#18CCFC',
+      },
+      { key: 'gradientMid', label: 'admin.backgrounds.color2', type: 'color', default: '#6344F5' },
+      { key: 'gradientEnd', label: 'admin.backgrounds.color3', type: 'color', default: '#AE48FF' },
+      {
+        key: 'staticColor',
+        label: 'admin.backgrounds.fillColor',
+        type: 'color',
+        default: '#d4d4d4',
+      },
+    ],
   },
   {
     type: 'background-beams-collision',
     labelKey: 'admin.backgrounds.beamsCollision',
     descriptionKey: 'admin.backgrounds.beamsCollisionDesc',
     category: 'svg',
-    settings: [],
+    settings: [
+      { key: 'beamColor', label: 'admin.backgrounds.beamColor', type: 'color', default: '#6366f1' },
+      {
+        key: 'explosionColor',
+        label: 'admin.backgrounds.explosionColor',
+        type: 'color',
+        default: '#a855f7',
+      },
+    ],
   },
   {
     type: 'gradient-animation',

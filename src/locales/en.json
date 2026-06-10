@@ -1170,6 +1170,8 @@
       "trailColor": "Trail Color",
       "bgStarColor": "Background Stars Color",
       "pointerColor": "Pointer Color",
+      "beamColor": "Beam Color",
+      "explosionColor": "Explosion Color",
       "bgColor": "Background Color",
       "fillColor": "Fill Color",
       "color1": "Color 1",
