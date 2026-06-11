@@ -15,6 +15,7 @@ export type BackgroundType =
   | 'spotlight'
   | 'ripple'
   | 'fireflies'
+  | 'snowfall'
   | 'none';
 
 export interface AnimationConfig {

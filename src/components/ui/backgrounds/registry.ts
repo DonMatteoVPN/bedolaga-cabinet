@@ -19,6 +19,7 @@ const backgroundImports: Record<Exclude<BackgroundType, 'none'>, () => Promise<u
   spotlight: () => import('./spotlight-bg'),
   ripple: () => import('./background-ripple'),
   fireflies: () => import('./fireflies'),
+  snowfall: () => import('./snowfall'),
 };
 
 /** Prefetch the JS chunk for a background type (call early to avoid lazy-load delay) */
@@ -49,6 +50,7 @@ export const backgroundComponents: Record<
   spotlight: lazy(() => import('./spotlight-bg')),
   ripple: lazy(() => import('./background-ripple')),
   fireflies: lazy(() => import('./fireflies')),
+  snowfall: lazy(() => import('./snowfall')),
 };
 
 // Registry of all background definitions with settings for the editor
@@ -613,6 +615,42 @@ export const backgroundRegistry: BackgroundDefinition[] = [
         max: 6,
         step: 0.5,
         default: 2,
+      },
+    ],
+  },
+  {
+    type: 'snowfall',
+    labelKey: 'admin.backgrounds.snowfall',
+    descriptionKey: 'admin.backgrounds.snowfallDesc',
+    category: 'canvas',
+    settings: [
+      { key: 'color', label: 'admin.backgrounds.particleColor', type: 'color', default: '#ffffff' },
+      {
+        key: 'density',
+        label: 'admin.backgrounds.density',
+        type: 'number',
+        min: 20,
+        max: 400,
+        step: 10,
+        default: 150,
+      },
+      {
+        key: 'speed',
+        label: 'admin.backgrounds.speed',
+        type: 'number',
+        min: 0.1,
+        max: 3,
+        step: 0.1,
+        default: 1,
+      },
+      {
+        key: 'wind',
+        label: 'admin.backgrounds.wind',
+        type: 'number',
+        min: -3,
+        max: 3,
+        step: 0.5,
+        default: 0.5,
       },
     ],
   },
