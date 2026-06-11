@@ -23,6 +23,7 @@ const backgroundImports: Record<Exclude<BackgroundType, 'none'>, () => Promise<u
   starfield: () => import('./starfield'),
   'matrix-rain': () => import('./matrix-rain'),
   'liquid-gradient': () => import('./liquid-gradient'),
+  constellation: () => import('./constellation'),
 };
 
 /** Prefetch the JS chunk for a background type (call early to avoid lazy-load delay) */
@@ -57,6 +58,7 @@ export const backgroundComponents: Record<
   starfield: lazy(() => import('./starfield')),
   'matrix-rain': lazy(() => import('./matrix-rain')),
   'liquid-gradient': lazy(() => import('./liquid-gradient')),
+  constellation: lazy(() => import('./constellation')),
 };
 
 // Registry of all background definitions with settings for the editor
@@ -754,6 +756,39 @@ export const backgroundRegistry: BackgroundDefinition[] = [
         max: 120,
         step: 5,
         default: 60,
+      },
+    ],
+  },
+  {
+    type: 'constellation',
+    labelKey: 'admin.backgrounds.constellation',
+    descriptionKey: 'admin.backgrounds.constellationDesc',
+    category: 'canvas',
+    settings: [
+      {
+        key: 'particleColor',
+        label: 'admin.backgrounds.particleColor',
+        type: 'color',
+        default: '#818cf8',
+      },
+      { key: 'lineColor', label: 'admin.backgrounds.lineColor', type: 'color', default: '#818cf8' },
+      {
+        key: 'count',
+        label: 'admin.backgrounds.count',
+        type: 'number',
+        min: 10,
+        max: 200,
+        step: 5,
+        default: 60,
+      },
+      {
+        key: 'linkDistance',
+        label: 'admin.backgrounds.linkDistance',
+        type: 'number',
+        min: 40,
+        max: 300,
+        step: 10,
+        default: 120,
       },
     ],
   },

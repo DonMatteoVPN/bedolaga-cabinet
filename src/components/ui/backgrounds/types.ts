@@ -19,6 +19,7 @@ export type BackgroundType =
   | 'starfield'
   | 'matrix-rain'
   | 'liquid-gradient'
+  | 'constellation'
   | 'none';
 
 export interface AnimationConfig {
